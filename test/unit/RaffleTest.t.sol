@@ -220,7 +220,7 @@ contract RaffleTest is Test {
         Vm.Log[] memory entries = vm.getRecordedLogs();
         bytes32 requestId = entries[1].topics[1];
 
-        //uint256 previousTimeStamp = raffle.getLastTimeStamp();
+        uint256 previousTimeStamp = raffle.getLastTimeStamp();
 
         // Pretend to be chainlink vrf to get random number and pick the winner
          VRFCoordinatorV2Mock(vrfCoordinator).fulfillRandomWords(
@@ -229,10 +229,10 @@ contract RaffleTest is Test {
         );
 
         // Assert
-        //assert(uint256(raffle.getRaffleState()) == 0);
-        //assert(raffle.getRecentWinner() != address(0));
-        //assert(raffle.getLengthOfPlayers() == 0);
-        //assert(previousTimeStamp < raffle.getLastTimeStamp);
-        //assert(raffle.getRecentWinner().balance == STARTING_USER_BALANCE + prize - entranceFee);
+        assert(uint256(raffle.getRaffleState()) == 0);
+        assert(raffle.getRecentWinner() != address(0));
+        assert(raffle.getLengthOfPlayers() == 0);
+        assert(previousTimeStamp < raffle.getLastTimeStamp);
+        assert(raffle.getRecentWinner().balance == STARTING_USER_BALANCE + prize - entranceFee);
     }
 }  
